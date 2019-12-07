@@ -17,7 +17,7 @@
 # - adicionar data e hora de inserção do cliente
 # - gerar numero da conta automaticamente
 # - inserir nome do utilizador que realizado cada operação (do gerente)
-#
+# - quando o usuário confirmar saída, o programa não encerra, mas solicita login de um novo usuário;
 #
 # -----------------------------------------------
 #
@@ -64,7 +64,7 @@ class tipo_cadastro:
     limite=0.0
     saldo=0.0
 
-def inserir_cliente():
+def cadastrar_cliente():
     novo_cliente=tipo_cadastro()
     novo_cliente.nome=input("Nome: ")
     novo_cliente.sobrenome=input("Sobrenome: ")
@@ -81,23 +81,97 @@ def listar_cliente ():
     for i in range(len(lista_principal_clientes)):
         print("\nNome:",lista_principal_clientes[i].nome,"\nSobrenome:",lista_principal_clientes[i].sobrenome,"\nCPF:",lista_principal_clientes[i].cpf,"\nE-mail:",lista_principal_clientes[i].email,"\nEndereço:",lista_principal_clientes[i].endereco,"\nTelefone:",lista_principal_clientes[i].telefone,"\nConta Corrente:",lista_principal_clientes[i].nconta,"\nLimite autorizado: R$ {0:.2f}".format(lista_principal_clientes[i].limite),"\nSaldo: R$ {0:.2f}".format(lista_principal_clientes[i].saldo))
 
-def buscar_cliente ():
+def consultar_cadastro ():
     cpf_busca=int(input("Consultar CPF: "))
     for i in range(len(lista_principal_clientes)):
         buscando_cpf=lista_principal_clientes[i].cpf
         if cpf_busca == buscando_cpf:
             print("Este CPF já está cadastrado.\nNome do/a cliente: ",lista_principal_clientes[i].nome,lista_principal_clientes[i].sobrenome)
 
+def alterar_cadastro ():
+    print("Em desenvolvimento")
+
+def excluir_cadastro ():
+    print("Em desenvolvimento")
+
+# Validar a saída do menu secundario Clientes e retorno ao menu principal do programa
+def valida_saida_clientes():
+    testando_saida="s"
+    while testando_saida == "s":
+        testando_saida=input("Deseja realmente retonar ao menu principal (s/n)? ")
+        testando_saida.lower
+        if testando_saida == "s":
+            return "s"
+        if testando_saida == "n":
+            return "n"
+        if testando_saida != "s" and testando_saida != "n":
+            print("Esta não é uma opção válida.")
+            testando_saida="s"
+
 # Chama as funções secundárias da opção principal Clientes
 def menu_secundario_clientes():
+    opcao="1"
+    print("\nOpções disponíveis para o gerenciamento de clientes: \n1 = Consultar cadastro\n2 = Cadastrar cliente\n3 = Alterar cadastro\n4 = Excluir cadastro\n0 = Voltar para o menu principal")
+    while opcao != "0":
+        opcao=input("Informe a opção desejada: ")
+        if opcao == "1":
+            consultar_cadastro()
+        if opcao == "2":
+            cadastrar_cliente()
+        if opcao == "3":
+            alterar_cadastro()
+        if opcao == "4":
+            excluir_cadastro()
+        if opcao == "0":
+            retornar=valida_saida_clientes()
+            if retornar == "s":
+                return "s"
+            if retornar == "n":
+                menu_secundario_clientes()
+        if opcao != "1" and opcao != "2" and opcao != "3" and opcao != "4" and opcao != "0":
+            print("Esta não é uma opção válida.")
+
+def debitar():
     print("Em desenvolvimento")
+
+def creditar():
+    print("Em desenvolvimento")
+
+# Validar a saída do menu secundario Conta Corrente e retorno ao menu principal do program
+def valida_saida_conta():
+    testando_saida="s"
+    while testando_saida == "s":
+        testando_saida=input("Deseja realmente retonar ao menu principal (s/n)? ")
+        testando_saida.lower
+        if testando_saida == "s":
+            return "s"
+        if testando_saida == "n":
+            return "n"
+        if testando_saida != "s" and testando_saida != "n":
+            print("Esta não é uma opção válida.")
+            testando_saida="s"
 
 # Chama as funções secundárias da opção principal Conta Correte
 def menu_secundario_conta():
-    print("Em desenvolvimento")
+    opcao="1"
+    print("\nOpções disponíveis para o gerenciamento de clientes: \n1 = Débito\n2 = Crédito\n0 = Voltar para o menu principal")
+    while opcao != "0":
+        opcao=input("\nInforme a opção desejada: ")
+        if opcao == "1":
+            debitar()
+        if opcao == "2":
+            creditar()
+        if opcao == "0":
+            retornar=valida_saida_conta()
+            if retornar == "s":
+                return "s"
+            if retornar == "n":
+                menu_secundario_conta()
+        if opcao != "1" and opcao != "2" and opcao != "0":
+            print("Esta não é uma opção válida.")
 
 # Confirmação da ooção principal de sair do programa
-def valida_saida():
+def valida_saida_princial():
     testando_saida="s"
     while testando_saida == "s":
         testando_saida=input("Deseja realmente sair do SCGO vBank (s/n)? ")
@@ -111,28 +185,32 @@ def valida_saida():
             testando_saida="s"
 
 # Chama as funções principais do programa
-def menu_princial():
+def menu_principal():
     opcao="1"
     print("\nOpções de gerenciamento disponíveis:\n1 = Gerenciar clientes\n2 = Gerenciar conta corrente\n0 = Sair do SCGO vBank")
     while opcao != "0":
         opcao=input("\nInforme a operação desejada: ")
         if opcao == "1":
             print("\nBem-vindo/a ao SCGO Clientes vBank")
-            menu_secundario_clientes()
+            retorno=menu_secundario_clientes()
+            if retorno == "s":
+                menu_principal()
         if opcao == "2":
             print("\nBem vindo/a ao SCGO Conta Corrente cBank")
-            menu_secundario_conta()
+            retorno=menu_secundario_conta()
+            if retorno == "s":
+                menu_principal()
         if opcao == "0":
-            desiste=valida_saida()
+            desiste=valida_saida_principal()
             if desiste == "s":
                 print("\nAté a próxima,",gerente,"\nSistema Central de Gerenciamento de Operações\n©SCGO 2019 | vBank®")
                 break
             if desiste == "n":
-                menu_princial()
+                menu_principal()
         if opcao != "1" and opcao != "2" and opcao != "0":
             print("Esta não é uma opção válida.")
 
 # PROGRAMA PRINCIPAL
 gerente=input("\nBem-vindo/a ao Sistema Central de Gerenciamento de Operações vBank.\nPara iniciar o SCGO vBabk, informe seu nome: ")
 print ("\n\nUtilizador/a registrado/a:",gerente,"\nSistema Central de Gerenciamento de Operações\n©SCGO 2019 | vBank®")
-menu_princial()
+menu_principal()
