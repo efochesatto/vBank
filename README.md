@@ -1,2 +1,2 @@
 # vBank
-Sistema Gerenciador de Operações vBank
+Sistema de Gerenciamento Central de Operações vBank
