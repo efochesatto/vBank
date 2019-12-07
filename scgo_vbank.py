@@ -14,7 +14,10 @@
 # - Faça um menu dentro de um laço para permitir que o gerente das contas acesse as opções. Por exemplo: Insere cliente; Altera dados de um cliente; Exclui cliente; Lista clientes; Movimento da conta; Sair; Digite a opção:
 #
 # IDEIAS ADICIONAIS
-# -
+# - adicionar data e hora de inserção do cliente
+# - gerar numero da conta automaticamente
+# - inserir nome do utilizador que realizado cada operação (do gerente)
+#
 #
 # -----------------------------------------------
 #
@@ -47,35 +50,55 @@
 # l.pop(2) - exclui o elemento localizado na posição 2 da lista;
 
 # -----------------------------------------------
+
 lista_principal_clientes=[]
+
 class tipo_cadastro:
-    nome=input("Nome: ")
-    sobrenome=input("Sobrenome: ")
-    cpf=int(input("CPF: "))
-    email=input("E-mail: ")
-    endereco=input("Endereço: ")
-    telefone=int(input("Telefone: "))
-    nconta=int(input("Número da Conta: "))
+    nome=""
+    sobrenome=""
+    cpf=0
+    email=""
+    endereco=""
+    telefone=0
+    nconta=0
+    limite=0.0
+    saldo=0.0
+
+def menu_princial():
+    opcao=1
+    while opcao != 0:
+        opcao=input("Informe a operação desejada: ")
+        if opcao == 1:
+    print("Em desenvolvimento")
+
 
 def inserir_cliente():
     novo_cliente=tipo_cadastro()
-    novo_cliente.a=input("Nome: ")
-    novo_cliente.b=input("Sobrenome: ")
-    novo_cliente.c=int(input("CPF: "))
-    novo_cliente.d=input("E-mail: ")
-    novo_cliente.e=input("Endereço: ")
-    novo_cliente.f=int(input("Telefone: "))
-    novo_cliente.g=int(input("Número da Conta: "))
-    lista_principal_cliente.append(novo_cliente)
-
-def busca_cliente ():
-    print("Em desenvolvimento.")
+    novo_cliente.nome=input("Nome: ")
+    novo_cliente.sobrenome=input("Sobrenome: ")
+    novo_cliente.cpf=int(input("CPF: "))
+    novo_cliente.email=input("E-mail: ")
+    novo_cliente.endereco=input("Endereço: ")
+    novo_cliente.telefone=int(input("Telefone: "))
+    novo_cliente.nconta=int(input("Número da Conta: "))
+    novo_cliente.limite=1000.00
+    novo_cliente.saldo=0.00
+    lista_principal_clientes.append(novo_cliente)
 
 def listar_cliente ():
-    print(lista_principal_clientes)
+    for i in range(len(lista_principal_clientes)):
+        print("\nNome:",lista_principal_clientes[i].nome,"\nSobrenome:",lista_principal_clientes[i].sobrenome,"\nCPF:",lista_principal_clientes[i].cpf,"\nE-mail:",lista_principal_clientes[i].email,"\nEndereço:",lista_principal_clientes[i].endereco,"\nTelefone:",lista_principal_clientes[i].telefone,"\nConta Corrente:",lista_principal_clientes[i].nconta,"\nLimite autorizado: R$ {0:.2f}".format(lista_principal_clientes[i].limite),"\nSaldo: R$ {0:.2f}".format(lista_principal_clientes[i].saldo))
 
-print("This is vBank.")
-inserir_cliente()
+def buscar_cliente ():
+    cpf_busca=int(input("Consultar CPF: "))
+    for i in range(len(lista_principal_clientes)):
+        buscando_cpf=lista_principal_clientes[i].cpf
+        if cpf_busca == buscando_cpf:
+            print("Este CPF já está cadastrado.\nNome do/a cliente: ",lista_principal_clientes[i].nome,lista_principal_clientes[i].sobrenome)
 
-print("\n\n\nSua lista de clientes:")
-listar_cliente()
+
+
+# PRINCIPAL
+gerente=input("\nBem-vindo/a ao Sistema Central de Gerenciamento de Operações vBank.\nPara iniciar o SCGO vBabk, informe seu nome: ")
+print ("\n\nUtilizador/a registrado/a:",gerente,"\nSistema Central de Gerenciamento de Operações\n©SCGO 2019 | vBank®")
+menu_princial()
