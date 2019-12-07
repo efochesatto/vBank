@@ -111,7 +111,7 @@ def valida_saida_clientes():
 # Chama as funções secundárias da opção principal Clientes
 def menu_secundario_clientes():
     opcao="1"
-    print("\nOpções disponíveis para o gerenciamento de clientes: \n1 = Consultar cadastro\n2 = Cadastrar cliente\n3 = Alterar cadastro\n4 = Excluir cadastro\n0 = Voltar para o menu principal")
+    print("1 = Consultar cadastro\n2 = Cadastrar cliente\n3 = Alterar cadastro\n4 = Excluir cadastro\n0 = Voltar para o menu principal\n")
     while opcao != "0":
         opcao=input("Informe a opção desejada: ")
         if opcao == "1":
@@ -127,7 +127,7 @@ def menu_secundario_clientes():
             if retornar == "s":
                 return "s"
             if retornar == "n":
-                menu_secundario_clientes()
+                opcao="1"
         if opcao != "1" and opcao != "2" and opcao != "3" and opcao != "4" and opcao != "0":
             print("Esta não é uma opção válida.")
 
@@ -154,9 +154,9 @@ def valida_saida_conta():
 # Chama as funções secundárias da opção principal Conta Correte
 def menu_secundario_conta():
     opcao="1"
-    print("\nOpções disponíveis para o gerenciamento de clientes: \n1 = Débito\n2 = Crédito\n0 = Voltar para o menu principal")
+    print("1 = Débito\n2 = Crédito\n0 = Voltar para o menu principal\n")
     while opcao != "0":
-        opcao=input("\nInforme a opção desejada: ")
+        opcao=input("Informe a opção desejada: ")
         if opcao == "1":
             debitar()
         if opcao == "2":
@@ -166,12 +166,12 @@ def menu_secundario_conta():
             if retornar == "s":
                 return "s"
             if retornar == "n":
-                menu_secundario_conta()
+                opcao="1"
         if opcao != "1" and opcao != "2" and opcao != "0":
             print("Esta não é uma opção válida.")
 
 # Confirmação da ooção principal de sair do programa
-def valida_saida_princial():
+def valida_saida_principal():
     testando_saida="s"
     while testando_saida == "s":
         testando_saida=input("Deseja realmente sair do SCGO vBank (s/n)? ")
@@ -186,31 +186,33 @@ def valida_saida_princial():
 
 # Chama as funções principais do programa
 def menu_principal():
-    opcao="1"
-    print("\nOpções de gerenciamento disponíveis:\n1 = Gerenciar clientes\n2 = Gerenciar conta corrente\n0 = Sair do SCGO vBank")
-    while opcao != "0":
-        opcao=input("\nInforme a operação desejada: ")
-        if opcao == "1":
-            print("\nBem-vindo/a ao SCGO Clientes vBank")
-            retorno=menu_secundario_clientes()
-            if retorno == "s":
-                menu_principal()
-        if opcao == "2":
-            print("\nBem vindo/a ao SCGO Conta Corrente cBank")
-            retorno=menu_secundario_conta()
-            if retorno == "s":
-                menu_principal()
-        if opcao == "0":
-            desiste=valida_saida_principal()
-            if desiste == "s":
-                print("\nAté a próxima,",gerente,"\nSistema Central de Gerenciamento de Operações\n©SCGO 2019 | vBank®")
-                break
-            if desiste == "n":
-                menu_principal()
-        if opcao != "1" and opcao != "2" and opcao != "0":
-            print("Esta não é uma opção válida.")
+    logado=1
+    while logado == 1:
+        gerente=input("\n\nBem-vindo/a ao Sistema Central de Gerenciamento de Operações vBank.\nPara iniciar o SCGO vBabk, informe seu IDvBank: ")
+        print ("\n\n---------------------------------------------\nUtilizador/a registrado/a:",gerente,"\nPerfil do/a utilizador/a: Gerente de Contas\nSistema Central de Gerenciamento de Operações\n©SCGO 2019 | Versão 1.0 | vBank®\n---------------------------------------------\n")
+        opcao="1"
+        while opcao != "0":
+            print("\nSCGO vBank Gerente de Contas\n1 = Gerenciar clientes\n2 = Gerenciar conta corrente\n0 = Sair do SCGO vBank")
+            opcao=input("\nInforme a operação desejada: ")
+            if opcao == "1":
+                print("\nSCGO vBank Gerente de Contas- Gerenciar Clientes")
+                retorno=menu_secundario_clientes()
+                if retorno == "s":
+                    opcao="1"
+            if opcao == "2":
+                print("\nSCGO vBank Gerente de Contas- Gerenciar Conta Corrente")
+                retorno=menu_secundario_conta()
+                if retorno == "s":
+                    opcao="1"
+            if opcao == "0":
+                desiste=valida_saida_principal()
+                if desiste == "s":
+                    print("\nLogout efetuado com sucesso.\nSistema Central de Gerenciamento de Operações\n©SCGO 2019 | vBank®")
+                    opcao="0"
+            if opcao != "1" and opcao != "2" and opcao != "0":
+                print("Esta não é uma opção válida.")
+
+
 
 # PROGRAMA PRINCIPAL
-gerente=input("\nBem-vindo/a ao Sistema Central de Gerenciamento de Operações vBank.\nPara iniciar o SCGO vBabk, informe seu nome: ")
-print ("\n\nUtilizador/a registrado/a:",gerente,"\nSistema Central de Gerenciamento de Operações\n©SCGO 2019 | vBank®")
 menu_principal()
