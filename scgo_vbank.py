@@ -64,14 +64,6 @@ class tipo_cadastro:
     limite=0.0
     saldo=0.0
 
-def menu_princial():
-    opcao=1
-    while opcao != 0:
-        opcao=input("Informe a operação desejada: ")
-        if opcao == 1:
-    print("Em desenvolvimento")
-
-
 def inserir_cliente():
     novo_cliente=tipo_cadastro()
     novo_cliente.nome=input("Nome: ")
@@ -96,9 +88,51 @@ def buscar_cliente ():
         if cpf_busca == buscando_cpf:
             print("Este CPF já está cadastrado.\nNome do/a cliente: ",lista_principal_clientes[i].nome,lista_principal_clientes[i].sobrenome)
 
+# Chama as funções secundárias da opção principal Clientes
+def menu_secundario_clientes():
+    print("Em desenvolvimento")
 
+# Chama as funções secundárias da opção principal Conta Correte
+def menu_secundario_conta():
+    print("Em desenvolvimento")
 
-# PRINCIPAL
+# Confirmação da ooção principal de sair do programa
+def valida_saida():
+    testando_saida="s"
+    while testando_saida == "s":
+        testando_saida=input("Deseja realmente sair do SCGO vBank (s/n)? ")
+        testando_saida.lower
+        if testando_saida == "s":
+            return "s"
+        if testando_saida == "n":
+            return "n"
+        if testando_saida != "s" and testando_saida != "n":
+            print("Esta não é uma opção válida.")
+            testando_saida="s"
+
+# Chama as funções principais do programa
+def menu_princial():
+    opcao="1"
+    print("\nOpções de gerenciamento disponíveis:\n1 = Gerenciar clientes\n2 = Gerenciar conta corrente\n0 = Sair do SCGO vBank")
+    while opcao != "0":
+        opcao=input("\nInforme a operação desejada: ")
+        if opcao == "1":
+            print("\nBem-vindo/a ao SCGO Clientes vBank")
+            menu_secundario_clientes()
+        if opcao == "2":
+            print("\nBem vindo/a ao SCGO Conta Corrente cBank")
+            menu_secundario_conta()
+        if opcao == "0":
+            desiste=valida_saida()
+            if desiste == "s":
+                print("\nAté a próxima,",gerente,"\nSistema Central de Gerenciamento de Operações\n©SCGO 2019 | vBank®")
+                break
+            if desiste == "n":
+                menu_princial()
+        if opcao != "1" and opcao != "2" and opcao != "0":
+            print("Esta não é uma opção válida.")
+
+# PROGRAMA PRINCIPAL
 gerente=input("\nBem-vindo/a ao Sistema Central de Gerenciamento de Operações vBank.\nPara iniciar o SCGO vBabk, informe seu nome: ")
 print ("\n\nUtilizador/a registrado/a:",gerente,"\nSistema Central de Gerenciamento de Operações\n©SCGO 2019 | vBank®")
 menu_princial()
