@@ -92,37 +92,50 @@ def cadastrar_cliente_alterar_cadastro():
 def cadastrar_cliente_finalizar():
     opcao="1"
     while opcao != "0":
-        print("\n------------\nSCGO vBank Gerente de Contas- Gerenciar Clientes - Cadastrar Cliente - Finalizar Cadastro\n1 = Ver cadastro\n2 = Alterar Cadastro\n3 = Finalizar e retornar ao menu anterior\n")
+        print("\n------------\nSCGO vBank Gerente de Contas- Gerenciar Clientes - Cadastrar Cliente - Finalizar Cadastro\n1 = Ver cadastro\n2 = Alterar Cadastro\n0 = Finalizar e retornar ao menu anterior\n")
         opcao=input("Informe a opção desejada: ")
         if opcao == "1":
             opcao=cadastrar_cliente_ver_cadastro()
         if opcao == "2":
             opcao=cadastrar_cliente_alterar_cadastro()
-        if opcao == "3":
+        if opcao == "0":
             return 0
         if opcao != "1" and opcao != "2" and opcao != "3":
             print("Esta não é uma opção válida.")
             opcao="1"
 
+def cadastrar_cliente_busca_existete(novo_cpf):
+    cadastro_encontrado=0
+    for i in range(len(lista_principal_clientes)):
+        buscando=lista_principal_clientes[i].cpf
+        if novo_cpf==buscando:
+            cadastro=i
+            cadastro_encontrado=1
+    return cadastro_encontrado
+
 def cadastrar_cliente():
     print("\n------------\nSCGO vBank Gerente de Contas- Gerenciar Clientes - Cadastrar Cliente\nCadastro vBank")
-    novo_cliente=tipo_cadastro()
-    novo_cliente.nome=input("Nome: ")
-    novo_cliente.sobrenome=input("Sobrenome: ")
-    novo_cliente.cpf=int(input("CPF: "))
-    novo_cliente.email=input("E-mail: ")
-    novo_cliente.endereco=input("Endereço: ")
-    novo_cliente.telefone=input("Telefone: ")
-    novo_cliente.vconta=int(input("vConta: "))
-    novo_cliente.limite=1000.00
-    novo_cliente.saldo=0.00
-    lista_principal_clientes.append(novo_cliente)
-    print("\nCadastro realizado com sucesso")
-    cadastrar_cliente_finalizar()
-    return "1"
-
-            # FALTA VERIFICAR SE O CPF JÁ EXISTE
-
+    novo_cpf=int(input("Informe o CPF (apenas números) do/a novo/a cliente: "))
+    eh_novo=cadastrar_cliente_busca_existete(novo_cpf)
+    if eh_novo == 0:
+        print("O CPF informando ainda não consta em nossos cadastros.\nCadastro de Cliente:")
+        novo_cliente=tipo_cadastro()
+        novo_cliente.nome=input("Nome: ")
+        novo_cliente.sobrenome=input("Sobrenome: ")
+        novo_cliente.cpf=novo_cpf
+        novo_cliente.email=input("E-mail: ")
+        novo_cliente.endereco=input("Endereço: ")
+        novo_cliente.telefone=input("Telefone: ")
+        novo_cliente.vconta=int(input("vConta: "))
+        novo_cliente.limite=1000.00
+        novo_cliente.saldo=0.00
+        lista_principal_clientes.append(novo_cliente)
+        print("\nCadastro realizado com sucesso")
+        cadastrar_cliente_finalizar()
+        return "1"
+    if eh_novo == 1:
+        print("Já existe um cadastrao com o CPF informado.")
+        return "1"
 
 def consultar_cadastro_ver_completo(i):
     opcao="1"
@@ -265,6 +278,7 @@ def alterar_cadastro ():
             cadastro_encontrado=1
     if cadastro_encontrado == 1:
         alterar_cadastro_encontrado(cadastro)
+        return cadastro
     else:
         opcao="1"
         while opcao!="0":
