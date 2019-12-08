@@ -139,35 +139,63 @@ def consultar_cadastro_ver_completo(i):
 
 def consultar_cadastro_cpf():
         busca=int(input("Consultar CPF: "))
+        cadastro_encontrado=0
         for i in range(len(lista_principal_clientes)):
             buscando=lista_principal_clientes[i].cpf
-            if busca == buscando:
-                print("Este CPF já está cadastrado.\nNome do/a cliente: ",lista_principal_clientes[i].nome,lista_principal_clientes[i].sobrenome,"\n")
-                return consultar_cadastro_ver_completo(i)
+            if busca==buscando:
+                cadastro=i
+                cadastro_encontrado=1
+        if cadastro_encontrado == 1:
+            print("Este CPF já está cadastrado.\nNome do/a cliente: ",lista_principal_clientes[i].nome,lista_principal_clientes[i].sobrenome,"\n")
+            return consultar_cadastro_ver_completo(i)
+        if cadastro_encontrado == 0:
+            print("Não foi encontrado nenhum cadastro com o CPF informado.")
+            return "1"
 
 def consultar_cadastro_nome():
         busca=input("Consultar Nome: ")
+        cadastro_encontrado=0
         for i in range(len(lista_principal_clientes)):
             buscando=lista_principal_clientes[i].nome
-            if busca == buscando:
-                print("Este Nome já está cadastrado.\nNome do/a cliente: ",lista_principal_clientes[i].nome,lista_principal_clientes[i].sobrenome,"\n")
-                return consultar_cadastro_ver_completo(i)
+            if busca==buscando:
+                cadastro=i
+                cadastro_encontrado=1
+        if cadastro_encontrado == 1:
+            print("Este Nome já está cadastrado.\nNome do/a cliente: ",lista_principal_clientes[i].nome,lista_principal_clientes[i].sobrenome,"\n")
+            return consultar_cadastro_ver_completo(i)
+        if cadastro_encontrado == 0:
+            print("Não foi encontrado nenhum cadastro com o CPF informado.")
+            return "1"
 
 def consultar_cadastro_sobrenome():
         busca=input("Consultar Sobrenome: ")
+        cadastro_encontrado=0
         for i in range(len(lista_principal_clientes)):
             buscando=lista_principal_clientes[i].sobrenome
-            if busca == buscando:
-                print("Este Nome já está cadastrado.\nNome do/a cliente: ",lista_principal_clientes[i].nome,lista_principal_clientes[i].sobrenome,"\n")
-                return consultar_cadastro_ver_completo(i)
+            if busca==buscando:
+                cadastro=i
+                cadastro_encontrado=1
+        if cadastro_encontrado == 1:
+            print("Este Sobrenome já está cadastrado.\nNome do/a cliente: ",lista_principal_clientes[i].nome,lista_principal_clientes[i].sobrenome,"\n")
+            return consultar_cadastro_ver_completo(i)
+        if cadastro_encontrado == 0:
+            print("Não foi encontrado nenhum cadastro com o CPF informado.")
+            return "1"
 
 def consultar_cadastro_vconta():
         busca=int(input("Consultar vConta: "))
+        cadastro_encontrado=0
         for i in range(len(lista_principal_clientes)):
             buscando=lista_principal_clientes[i].vconta
-            if busca == buscando:
-                print("Este Nome já está cadastrado.\nNome do/a cliente: ",lista_principal_clientes[i].nome,lista_principal_clientes[i].sobrenome,"\n")
-                return consultar_cadastro_ver_completo(i)
+            if busca==buscando:
+                cadastro=i
+                cadastro_encontrado=1
+        if cadastro_encontrado == 1:
+            print("Esta vConta já está cadastrado.\nNome do/a cliente: ",lista_principal_clientes[i].nome,lista_principal_clientes[i].sobrenome,"\n")
+            return consultar_cadastro_ver_completo(i)
+        if cadastro_encontrado == 0:
+            print("Não foi encontrado nenhum cadastro com o CPF informado.")
+            return "1"
 
 def consultar_cadastro ():
     opcao="1"
@@ -279,12 +307,13 @@ def excluir_cadastro ():
     if cadastro_encontrado == 1:
         excluir_cadastro_encontrado(cadastro)
         return "1"
-    if cadastro_encontrado != 1:
+    if cadastro_encontrado == 0:
         opcao="1"
         while opcao!="0":
             opcao=input("O CPF informado não é um cliente vBank.\nDeseja realizar uma nova busca (s/n)?" )
             if opcao == "s":
                 excluir_cadastro()
+                return "1"
             if opcao == "n":
                 return "1"
             if opcao != "s" and opcao != "n":
