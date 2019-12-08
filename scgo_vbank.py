@@ -21,15 +21,8 @@
 # - informar data e hora de login e logout de um utilizador
 # -----------------------------------------------
 #
-# PROBLEMAS
-# - na busca de cadastro, se não encontra, dá erro; tem que retornar que não encontrou
 #
 #
-#
-#
-#
-#
-
 # lista=[append classe com todos os itens solicitados do cadastro]
 # criar as funções necessárias
 # pode ser usado o import, para não inserir as funções diretamente no programa principal
@@ -335,8 +328,6 @@ def excluir_cadastro ():
                 opcao="1"
 
 
-
-
 #
 # ------------------------------------------------------------------------------------------------------------------------------------
 # FUNÇÕES DE CONTA
@@ -345,7 +336,11 @@ def excluir_cadastro ():
 
 
 def debitar():
-    print("Em desenvolvimento")
+    consultar_cadastro()
+    valor=float(input("Informe o valor a ser debitado: "))
+
+
+
 
 def creditar():
     print("Em desenvolvimento")
