@@ -126,13 +126,36 @@ def consultar_cadastro_ver_completo(i):
             opcao="1"
 
 def consultar_cadastro_cpf():
-        cpf_busca=int(input("Consultar CPF: "))
+        busca=int(input("Consultar CPF: "))
         for i in range(len(lista_principal_clientes)):
-            buscando_cpf=lista_principal_clientes[i].cpf
-            if cpf_busca == buscando_cpf:
+            buscando=lista_principal_clientes[i].cpf
+            if busca == buscando:
                 print("Este CPF já está cadastrado.\nNome do/a cliente: ",lista_principal_clientes[i].nome,lista_principal_clientes[i].sobrenome,"\n")
                 return consultar_cadastro_ver_completo(i)
 
+def consultar_cadastro_nome():
+        busca=input("Consultar Nome: ")
+        for i in range(len(lista_principal_clientes)):
+            buscando=lista_principal_clientes[i].nome
+            if busca == buscando:
+                print("Este Nome já está cadastrado.\nNome do/a cliente: ",lista_principal_clientes[i].nome,lista_principal_clientes[i].sobrenome,"\n")
+                return consultar_cadastro_ver_completo(i)
+
+def consultar_cadastro_sobrenome():
+        busca=input("Consultar Sobrenome: ")
+        for i in range(len(lista_principal_clientes)):
+            buscando=lista_principal_clientes[i].sobrenome
+            if busca == buscando:
+                print("Este Nome já está cadastrado.\nNome do/a cliente: ",lista_principal_clientes[i].nome,lista_principal_clientes[i].sobrenome,"\n")
+                return consultar_cadastro_ver_completo(i)
+
+def consultar_cadastro_vconta():
+        busca=int(input("Consultar vConta: "))
+        for i in range(len(lista_principal_clientes)):
+            buscando=lista_principal_clientes[i].vconta
+            if busca == buscando:
+                print("Este Nome já está cadastrado.\nNome do/a cliente: ",lista_principal_clientes[i].nome,lista_principal_clientes[i].sobrenome,"\n")
+                return consultar_cadastro_ver_completo(i)
 
 def consultar_cadastro ():
     opcao="1"
