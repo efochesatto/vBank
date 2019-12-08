@@ -249,8 +249,48 @@ def alterar_cadastro ():
                 print("Esta não é uma opção válida.")
                 opcao="1"
 
+def excluir_cadastro_confirmar_conta_buscada ():
+    opcao=input("Deseja realmente excluir esta conta (s/n)? ")
+    if opcao == "s":
+        return 1
+    if opcao == "n":
+        return 0
+    if opcao != "s" and opcao != "n":
+        print("Esta não é uma opção válida.")
+        excluir_cadastro_confirmar_conta_buscada()
+
+def excluir_cadastro_encontrado(cadastro):
+    print("Titularidade da conta a ser alterada:",lista_principal_clientes[cadastro].nome,lista_principal_clientes[cadastro].sobrenome)
+    confirma=excluir_cadastro_confirmar_conta_buscada()
+    if confirma == 1:
+        lista_principal_clientes.pop(cadastro)
+        print("Cadastro excluído com sucesso.")
+        return "1"
+
 def excluir_cadastro ():
-    print("Em desenvolvimento")
+    print("\n------------\nSCGO vBank Gerente de Contas- Gerenciar Clientes - Excluir Cadastro\nEsta opção remove permanentemente um cadastro de cliente. \nPara excluir um cadastro, é necessário o informar o CPF registrado.")
+    busca=int(input("Informe o CPF do cadastro que deseja excluir: "))
+    cadastro_encontrado=0
+    for i in range(len(lista_principal_clientes)):
+        buscando=lista_principal_clientes[i].cpf
+        if busca==buscando:
+            cadastro=i
+            cadastro_encontrado=1
+    if cadastro_encontrado == 1:
+        excluir_cadastro_encontrado(cadastro)
+        return "1"
+    if cadastro_encontrado != 1:
+        opcao="1"
+        while opcao!="0":
+            opcao=input("O CPF informado não é um cliente vBank.\nDeseja realizar uma nova busca (s/n)?" )
+            if opcao == "s":
+                excluir_cadastro()
+            if opcao == "n":
+                return "1"
+            if opcao != "s" and opcao != "n":
+                print("Esta não é uma opção válida.")
+                opcao="1"
+
 
 
 
