@@ -1,57 +1,36 @@
-# GERENCIAR CLIENTES
-# - Função: inserir, alterar, excluir e consultar seus clientes
-# - Atributos dos clientes: nome, sobrenome, cpf; email; endereço; telefone; número da conta corrente; limite de crédito (R$1.000,00; Saldo)
-# - Observações: inserir um novo cadastro; verificar se o CPF informado já existe (se sim, informar usuário e permitir que os dados já cadastrados sejam alterados pelo gerente); aqueles que quiserem validar o CPF informado, o site http://www.macoratti.net/alg_cpf.htm apresenta um passo-a-passo; verificar se o número da conta corrente já pertence a um cliente (se sim, informar outro número); para o caso de alteração, o usuário informa um CPF e caso ele exista no cadastro, permite alterar os dados do cliente (escolha quais dados podem ser alterados); para o caso de exclusão, o usuário informa um CPF e caso ele exista no cadastro, o aplicativo pede a confirmação e exclui o cliente do cadastro; para o caso de listagem de clientes, lista de forma organizada, os dados de todos os clientes cadastrados;
-# - Gerenciar conta corrente
 #
-# GERENCIAR CONTA CORRENTE
-# - Inserir crédito (1) ou débito (2)
-# - Atualizar o saldo, conforme a operação realizada
-# - Em caso de débito, o sistema deve consultar o saldo para avaliar disponibilidade.
-# - O valor negativo da conta não pode ser superior ao limite.
+# ------------------------------------------------------------------------------------------------------------------------------------
+# PERSONALIZAÇÃO
+# ------------------------------------------------------------------------------------------------------------------------------------
 #
-# DICAS
-# - Faça um menu dentro de um laço para permitir que o gerente das contas acesse as opções. Por exemplo: Insere cliente; Altera dados de um cliente; Exclui cliente; Lista clientes; Movimento da conta; Sair; Digite a opção:
-#
-# IDEIAS ADICIONAIS
-# - adicionar data e hora de inserção do cliente
-# - gerar numero da conta automaticamente
-# - inserir nome do utilizador que realizado cada operação (do gerente)
-# - quando o usuário confirmar saída, o programa não encerra, mas solicita login de um novo usuário;
-# - informar data e hora de login e logout de um utilizador
-# -----------------------------------------------
-#
-#
-#
-# lista=[append classe com todos os itens solicitados do cadastro]
-# criar as funções necessárias
-# pode ser usado o import, para não inserir as funções diretamente no programa principal
-# no programa principal, fazer um while true (laço eterno) e insere as oções necessárias solicitadas (incluir cliente, apagar cliente, movimentar conta); se 'inclui', chama a função que inclui o cliente; se 'movimentar', chama a função para movimentar o cliente;
-#
-# lista=[]
-# class t:
-#   nome=input(...
-#   cpf=int(input....
-#   [...]
-# mt=t()
-# mt.a=input...
-# mt.b=input...
-# lista.append(mt)
-#
-# mt[0].a - para ler o valor 'a' do 'primeiro lote'
-#
-# valor=input('Informe o valor a ser procurado: ')
-# def buscata (v, valor) - esta busca se no atributo 'a' possui o valor referido, sendo v o nome da lista no qual deve procurar o valor e 'valor' a variavel que contem o valor a ser vuscado;
-#    for i in range (len(v):
-#        if v[i].a==valor:
-#           return i
-#     return -1
-#
-# l(buscata(l,30).b - busca o valor de 'b' na posição em q 'a' vale 30
-#
-# l.pop(2) - exclui o elemento localizado na posição 2 da lista;
 
-# -----------------------------------------------
+normal = "\033[0;0m"
+vermelho = "\033[31m"
+verde = "\033[32m"
+azul = "\033[34m"
+ciano = "\033[36m"
+magenta = "\033[35m"
+amarelo = "\033[33m"
+preto = "\033[30m"
+branco = "\033[37m"
+negrito = "\033[1m"
+reverso = "\033[2m"
+fundo_preto = "\033[40m"
+fundo_vermelho = "\033[41m"
+fundo_verde = "\033[42m"
+fundo_amarelo = "\033[43m"
+fundo_azul = "\033[44m"
+fundo_magenta = "\033[45m"
+fundo_ciano = "\033[46m"
+fundo_branco = "\033[47m"
+
+
+#
+# ------------------------------------------------------------------------------------------------------------------------------------
+# LISTAS E CLASSES
+# ------------------------------------------------------------------------------------------------------------------------------------
+#
+
 
 lista_principal_clientes=[]
 
@@ -65,6 +44,7 @@ class tipo_cadastro:
     nconta=0
     limite=0.0
     saldo=0.0
+
 
 #
 # ------------------------------------------------------------------------------------------------------------------------------------
@@ -170,7 +150,7 @@ def consultar_cadastro_nome():
             print("Este Nome já está cadastrado.\nNome do/a cliente: ",lista_principal_clientes[i].nome,lista_principal_clientes[i].sobrenome,"\n")
             return consultar_cadastro_ver_completo(i)
         if cadastro_encontrado == 0:
-            print("Não foi encontrado nenhum cadastro com o CPF informado.")
+            print("Não foi encontrado nenhum cadastro com o nome informado.")
             return "1"
 
 def consultar_cadastro_sobrenome():
@@ -185,7 +165,7 @@ def consultar_cadastro_sobrenome():
             print("Este Sobrenome já está cadastrado.\nNome do/a cliente: ",lista_principal_clientes[i].nome,lista_principal_clientes[i].sobrenome,"\n")
             return consultar_cadastro_ver_completo(i)
         if cadastro_encontrado == 0:
-            print("Não foi encontrado nenhum cadastro com o CPF informado.")
+            print("Não foi encontrado nenhum cadastro com o sobrenome informado.")
             return "1"
 
 def consultar_cadastro_vconta():
@@ -200,7 +180,7 @@ def consultar_cadastro_vconta():
             print("Esta vConta já está cadastrado.\nNome do/a cliente: ",lista_principal_clientes[i].nome,lista_principal_clientes[i].sobrenome,"\n")
             return consultar_cadastro_ver_completo(i)
         if cadastro_encontrado == 0:
-            print("Não foi encontrado nenhum cadastro com o CPF informado.")
+            print("Não foi encontrado nenhum cadastro com a vConta informada.")
             return "1"
 
 def consultar_cadastro ():
@@ -330,20 +310,78 @@ def excluir_cadastro ():
 
 #
 # ------------------------------------------------------------------------------------------------------------------------------------
-# FUNÇÕES DE CONTA
+# OPERAÇÕES DE CONTA
 # ------------------------------------------------------------------------------------------------------------------------------------
 #
 
 
+def operar_conta_busca_conta_cpf():
+    busca=int(input("Informe o CPF da conta:"))
+    for i in range(len(lista_principal_clientes)):
+        buscando=lista_principal_clientes[i].cpf
+        if busca==buscando:
+            return i
+    return "1"
+
+def operar_conta_busca_conta_vConta():
+    busca=int(input("Informe o número da vConta:"))
+    for i in range(len(lista_principal_clientes)):
+        buscando=lista_principal_clientes[i].cpf
+        if busca==buscando:
+            return i
+    return "1"
+
+def operar_conta_busca_conta():
+    opcao="1"
+    while opcao != "0":
+        opcao=input("\n------------\nSCGO vBank Gerente de Contas- Gerenciar Conta Corrente - Débito\nPara realizar uma operação, você precisa acessar a conta.\nPara acessar a conta desejada, escolha uma das opções:\n1 = CPF\n2 = vConta\n0 = Retornar ao menu anterior.\n\nInforme a opção desejada: ")
+        if opcao == "1":
+            opcao=operar_conta_busca_conta_cpf()
+            if opcao == "1":
+                print("O CPF informado não consta em nossos cadastros.")
+                opcao="1"
+            else:
+                return opcao
+        if opcao == "2":
+            opcao=operar_conta_busca_conta_vConta()
+            if opcao == "1":
+                print("O número de vConta informado não consta em nossos cadastros.")
+                opcao="1"
+            else:
+                return opcao
+        if opcao == "0":
+            return "1"
+        if opcao != "1" and opcao != "2" and opcao != "0":
+            print("Esta não é uma opção válida.")
+            opcao="1"
+    return "1"
+
 def debitar():
-    consultar_cadastro()
-    valor=float(input("Informe o valor a ser debitado: "))
-
-
-
+    conta_debitar=operar_conta_busca_conta()
+    if conta_debitar == "1":
+        return "1"
+    if conta_debitar != "1":
+        print("\nCliente vBank: ",lista_principal_clientes[conta_debitar].nome, lista_principal_clientes[conta_debitar].sobrenome, "\nSaldo da vConta: ",lista_principal_clientes[conta_debitar].saldo, "\nLimite autorizado: ",lista_principal_clientes[conta_debitar].limite, "\nSaldo disponível: ",((lista_principal_clientes[conta_debitar].saldo)+(lista_principal_clientes[conta_debitar].limite)))
+        valor_disponível=((lista_principal_clientes[conta_debitar].saldo)+(lista_principal_clientes[conta_debitar].limite))
+        valor=float(input("\nInforme o valor a ser debitado: "))
+        if valor_disponível-valor >= 0:
+            lista_principal_clientes[conta_debitar].saldo=((lista_principal_clientes[conta_debitar].saldo)-valor)
+            print("\nOperação realizada com sucesso.\n\nCliente vBank: ",lista_principal_clientes[conta_debitar].nome, lista_principal_clientes[conta_debitar].sobrenome, "\nSaldo da vConta: ",lista_principal_clientes[conta_debitar].saldo, "\nLimite autorizado: ",lista_principal_clientes[conta_debitar].limite, "\nSaldo disponível: ",((lista_principal_clientes[conta_debitar].saldo)+(lista_principal_clientes[conta_debitar].limite)))
+        if valor_disponível-valor < 0:
+            print("Esta conta não possui disponibilidade para esta operação.")
+            debitar()
 
 def creditar():
-    print("Em desenvolvimento")
+    conta_creditar=operar_conta_busca_conta()
+    if conta_creditar == "1":
+        return "1"
+    if conta_creditar != "1":
+        print("\nCliente vBank: ",lista_principal_clientes[conta_creditar].nome, lista_principal_clientes[conta_creditar].sobrenome, "\nSaldo da vConta: ",lista_principal_clientes[conta_creditar].saldo, "\nLimite autorizado: ",lista_principal_clientes[conta_creditar].limite, "\nSaldo disponível: ",((lista_principal_clientes[conta_creditar].saldo)+(lista_principal_clientes[conta_creditar].limite)))
+        valor_disponível=((lista_principal_clientes[conta_creditar].saldo)+(lista_principal_clientes[conta_creditar].limite))
+        valor=float(input("\nInforme o valor a ser debitado: "))
+        lista_principal_clientes[conta_creditar].saldo=((lista_principal_clientes[conta_creditar].saldo)+valor)
+        print("\nOperação realizada com sucesso.\n\nCliente vBank: ",lista_principal_clientes[conta_creditar].nome, lista_principal_clientes[conta_creditar].sobrenome, "\nSaldo da vConta: ",lista_principal_clientes[conta_creditar].saldo, "\nLimite autorizado: ",lista_principal_clientes[conta_creditar].limite, "\nSaldo disponível: ",((lista_principal_clientes[conta_creditar].saldo)+(lista_principal_clientes[conta_creditar].limite)))
+        return "1"
 
 
 #
