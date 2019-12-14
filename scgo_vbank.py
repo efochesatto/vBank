@@ -1,8 +1,8 @@
-#
-# ------------------------------------------------------------------------------------------------------------------------------------
+#########################################################
+#########################################################
 # PERSONALIZAÇÃO
-# ------------------------------------------------------------------------------------------------------------------------------------
-#
+#########################################################
+#########################################################
 
 normal = "\033[0;0m"
 vermelho = "\033[31m"
@@ -25,11 +25,11 @@ fundo_ciano = "\033[46m"
 fundo_branco = "\033[47m"
 
 
-#
-# ------------------------------------------------------------------------------------------------------------------------------------
+#########################################################
+#########################################################
 # LISTAS E CLASSES
-# ------------------------------------------------------------------------------------------------------------------------------------
-#
+#########################################################
+#########################################################
 
 
 lista_principal_clientes=[]
@@ -41,16 +41,23 @@ class tipo_cadastro:
     email=""
     endereco=""
     telefone=""
-    nconta=0
+    vconta=0
     limite=0.0
     saldo=0.0
 
 
-#
-# ------------------------------------------------------------------------------------------------------------------------------------
+#########################################################
+#########################################################
 # FUNÇÕES DE CLIENTE
-# ------------------------------------------------------------------------------------------------------------------------------------
-#
+#########################################################
+#########################################################
+
+
+def valida_cpf():
+    print()
+
+def gera_vconta():
+    print()
 
 
 def cadastrar_cliente_ver_cadastro():
@@ -58,19 +65,13 @@ def cadastrar_cliente_ver_cadastro():
     print("\nNome:",lista_principal_clientes[i].nome,"\nSobrenome:",lista_principal_clientes[i].sobrenome,"\nCPF:",lista_principal_clientes[i].cpf,"\nE-mail:",lista_principal_clientes[i].email,"\nEndereço:",lista_principal_clientes[i].endereco,"\nTelefone:",lista_principal_clientes[i].telefone,"\nvConta:",lista_principal_clientes[i].vconta,"\nLimite autorizado: R$ {0:.2f}".format(lista_principal_clientes[i].limite),"\nSaldo: R$ {0:.2f}".format(lista_principal_clientes[i].saldo,"\n"))
     return "1"
 
-def cadastrar_cliente_alterar_cadastro():
-    print("Este módulo ainda não foi desenvolvido.\nPara alterar o cadastro, retorne ao menu anterior e selecione 'Alterar Cadastro'")
-    return "1"
-
 def cadastrar_cliente_finalizar():
     opcao="1"
     while opcao != "0":
-        print("\n------------\nSCGO vBank Gerente de Contas- Gerenciar Clientes - Cadastrar Cliente - Finalizar Cadastro\n1 = Ver cadastro\n2 = Alterar Cadastro\n0 = Finalizar e retornar ao menu anterior\n")
+        print("\n--------------------------------------------------\nSCGO vBank Gerente de Contas- Gerenciar Clientes - Cadastrar Cliente - Finalizar Cadastro\n1 = Ver cadastro\n0 = Finalizar e retornar ao menu anterior\n")
         opcao=input("Informe a opção desejada: ")
         if opcao == "1":
             opcao=cadastrar_cliente_ver_cadastro()
-        if opcao == "2":
-            opcao=cadastrar_cliente_alterar_cadastro()
         if opcao == "0":
             return 0
         if opcao != "1" and opcao != "2" and opcao != "3":
@@ -87,7 +88,7 @@ def cadastrar_cliente_busca_existete(novo_cpf):
     return cadastro_encontrado
 
 def cadastrar_cliente():
-    print("\n------------\nSCGO vBank Gerente de Contas- Gerenciar Clientes - Cadastrar Cliente\nCadastro vBank")
+    print("\n--------------------------------------------------\nSCGO vBank Gerente de Contas- Gerenciar Clientes - Cadastrar Cliente\nCadastro vBank")
     novo_cpf=int(input("Informe o CPF (apenas números) do/a novo/a cliente: "))
     eh_novo=cadastrar_cliente_busca_existete(novo_cpf)
     if eh_novo == 0:
@@ -186,7 +187,7 @@ def consultar_cadastro_vconta():
 def consultar_cadastro ():
     opcao="1"
     while opcao != "0":
-        print("\n------------\nSCGO vBank Gerente de Contas- Gerenciar Clientes - Consultar Cadastro\nConsultar por:\n1 = CPF\n2 = Nome \n3 = Sobrenome\n4 = vConta\n0 = Retornar ao menu anterior\n")
+        print("\n--------------------------------------------------\nSCGO vBank Gerente de Contas- Gerenciar Clientes - Consultar Cadastro\nConsultar por:\n1 = CPF\n2 = Nome \n3 = Sobrenome\n4 = vConta\n0 = Retornar ao menu anterior\n")
         opcao=input("Informe a opção desejada: ")
         if opcao == "1":
             opcao=consultar_cadastro_cpf()
@@ -241,7 +242,7 @@ def alterar_cadastro_encontrado (cadastro):
             return -1
 
 def alterar_cadastro ():
-    print("\n------------\nSCGO vBank Gerente de Contas- Gerenciar Clientes - Alterar Cadastro\nEsta opção permite realizar atualização cadastral. \nPara alterar um cadastro, é necessário o informar o CPF registrado.")
+    print("\n--------------------------------------------------\nSCGO vBank Gerente de Contas- Gerenciar Clientes - Alterar Cadastro\nEsta opção permite realizar atualização cadastral. \nPara alterar um cadastro, é necessário o informar o CPF registrado.")
     busca=int(input("Informe o CPF do cadastro que deseja alterar: "))
     cadastro_encontrado=0
     for i in range(len(lista_principal_clientes)):
@@ -283,7 +284,7 @@ def excluir_cadastro_encontrado(cadastro):
         return "1"
 
 def excluir_cadastro ():
-    print("\n------------\nSCGO vBank Gerente de Contas- Gerenciar Clientes - Excluir Cadastro\nEsta opção remove permanentemente um cadastro de cliente. \nPara excluir um cadastro, é necessário o informar o CPF registrado.")
+    print("\n--------------------------------------------------\nSCGO vBank Gerente de Contas- Gerenciar Clientes - Excluir Cadastro\nEsta opção remove permanentemente um cadastro de cliente. \nPara excluir um cadastro, é necessário o informar o CPF registrado.")
     busca=int(input("Informe o CPF do cadastro que deseja excluir: "))
     cadastro_encontrado=0
     for i in range(len(lista_principal_clientes)):
@@ -308,11 +309,11 @@ def excluir_cadastro ():
                 opcao="1"
 
 
-#
-# ------------------------------------------------------------------------------------------------------------------------------------
+#########################################################
+#########################################################
 # OPERAÇÕES DE CONTA
-# ------------------------------------------------------------------------------------------------------------------------------------
-#
+#########################################################
+#########################################################
 
 
 def operar_conta_busca_conta_cpf():
@@ -326,7 +327,7 @@ def operar_conta_busca_conta_cpf():
 def operar_conta_busca_conta_vConta():
     busca=int(input("Informe o número da vConta:"))
     for i in range(len(lista_principal_clientes)):
-        buscando=lista_principal_clientes[i].cpf
+        buscando=lista_principal_clientes[i].vconta
         if busca==buscando:
             return i
     return "1"
@@ -334,7 +335,7 @@ def operar_conta_busca_conta_vConta():
 def operar_conta_busca_conta():
     opcao="1"
     while opcao != "0":
-        opcao=input("\n------------\nSCGO vBank Gerente de Contas- Gerenciar Conta Corrente - Débito\nPara realizar uma operação, você precisa acessar a conta.\nPara acessar a conta desejada, escolha uma das opções:\n1 = CPF\n2 = vConta\n0 = Retornar ao menu anterior.\n\nInforme a opção desejada: ")
+        opcao=input("\n--------------------------------------------------\nSCGO vBank Gerente de Contas- Gerenciar Conta Corrente - Débito\nPara realizar uma operação, você precisa acessar a conta.\nPara acessar a conta desejada, escolha uma das opções:\n1 = CPF\n2 = vConta\n0 = Retornar ao menu anterior.\n\nInforme a opção desejada: ")
         if opcao == "1":
             opcao=operar_conta_busca_conta_cpf()
             if opcao == "1":
@@ -361,7 +362,7 @@ def debitar():
     if conta_debitar == "1":
         return "1"
     if conta_debitar != "1":
-        print("\nCliente vBank: ",lista_principal_clientes[conta_debitar].nome, lista_principal_clientes[conta_debitar].sobrenome, "\nSaldo da vConta: ",lista_principal_clientes[conta_debitar].saldo, "\nLimite autorizado: ",lista_principal_clientes[conta_debitar].limite, "\nSaldo disponível: ",((lista_principal_clientes[conta_debitar].saldo)+(lista_principal_clientes[conta_debitar].limite)))
+        print("\nCliente vBank: ",lista_principal_clientes[conta_debitar].nome, lista_principal_clientes[conta_debitar].sobrenome, "\nSaldo da vConta: R$",lista_principal_clientes[conta_debitar].saldo, "\nLimite autorizado: R$",lista_principal_clientes[conta_debitar].limite, "\nSaldo disponível: R$ {0:.2f}".format((lista_principal_clientes[conta_debitar].saldo)+(lista_principal_clientes[conta_debitar].limite)))
         valor_disponível=((lista_principal_clientes[conta_debitar].saldo)+(lista_principal_clientes[conta_debitar].limite))
         valor=float(input("\nInforme o valor a ser debitado: "))
         if valor_disponível-valor >= 0:
@@ -378,17 +379,17 @@ def creditar():
     if conta_creditar != "1":
         print("\nCliente vBank: ",lista_principal_clientes[conta_creditar].nome, lista_principal_clientes[conta_creditar].sobrenome, "\nSaldo da vConta: ",lista_principal_clientes[conta_creditar].saldo, "\nLimite autorizado: ",lista_principal_clientes[conta_creditar].limite, "\nSaldo disponível: ",((lista_principal_clientes[conta_creditar].saldo)+(lista_principal_clientes[conta_creditar].limite)))
         valor_disponível=((lista_principal_clientes[conta_creditar].saldo)+(lista_principal_clientes[conta_creditar].limite))
-        valor=float(input("\nInforme o valor a ser debitado: "))
+        valor=float(input("\nInforme o valor a ser creditado: "))
         lista_principal_clientes[conta_creditar].saldo=((lista_principal_clientes[conta_creditar].saldo)+valor)
         print("\nOperação realizada com sucesso.\n\nCliente vBank: ",lista_principal_clientes[conta_creditar].nome, lista_principal_clientes[conta_creditar].sobrenome, "\nSaldo da vConta: ",lista_principal_clientes[conta_creditar].saldo, "\nLimite autorizado: ",lista_principal_clientes[conta_creditar].limite, "\nSaldo disponível: ",((lista_principal_clientes[conta_creditar].saldo)+(lista_principal_clientes[conta_creditar].limite)))
         return "1"
 
 
-#
-# ------------------------------------------------------------------------------------------------------------------------------------
+#########################################################
+#########################################################
 # FUNÇÕES DE NAVEGAÇÃO
-# ------------------------------------------------------------------------------------------------------------------------------------
-#
+########################################################
+########################################################
 
 
 # Validar a saída do menu secundario Clientes e retorno ao menu principal do programa
@@ -409,7 +410,7 @@ def valida_saida_clientes():
 def menu_secundario_clientes():
     opcao="1"
     while opcao != "0":
-        print("\n------------\nSCGO vBank Gerente de Contas- Gerenciar Clientes\n1 = Consultar cadastro\n2 = Cadastrar cliente\n3 = Alterar cadastro\n4 = Excluir cadastro\n0 = Voltar para o menu principal\n")
+        print("\n--------------------------------------------------\nSCGO vBank Gerente de Contas- Gerenciar Clientes\n1 = Consultar cadastro\n2 = Cadastrar cliente\n3 = Alterar cadastro\n4 = Excluir cadastro\n0 = Voltar para o menu principal\n")
         opcao=input("Informe a opção desejada: ")
         if opcao == "1":
             opcao=consultar_cadastro()
@@ -455,7 +456,7 @@ def valida_saida_conta():
 def menu_secundario_conta():
     opcao="1"
     while opcao != "0":
-        print("\n------------\nSCGO vBank Gerente de Contas- Gerenciar Conta Corrente\n1 = Débito\n2 = Crédito\n0 = Voltar para o menu principal\n")
+        print("\n--------------------------------------------------\nSCGO vBank Gerente de Contas- Gerenciar Conta Corrente\n1 = Débito\n2 = Crédito\n0 = Voltar para o menu principal\n")
         opcao=input("Informe a opção desejada: ")
         if opcao == "1":
             debitar()
@@ -488,11 +489,11 @@ def valida_saida_principal():
 def menu_principal():
     logado=1
     while logado == 1:
-        gerente=input("\n\nBem-vindo/a ao Sistema Central de Gerenciamento de Operações vBank.\nPara iniciar o SCGO vBabk, informe seu IDvBank: ")
-        print ("\n\n---------------------------------------------\nLogin efetuado com sucesso.\nUtilizador/a registrado/a:",gerente,"\nPerfil do/a utilizador/a: Gerente de Contas\nSistema Central de Gerenciamento de Operações\n©SCGO 2019 | Versão 1.0 | vBank®\n---------------------------------------------\n")
+        gerente=input("\n\n\n\nBem-vindo/a ao Sistema Central de Gerenciamento de Operações vBank.\nPara iniciar o SCGO vBabk, informe seu IDvBank: ")
+        print ("\n\n==================================================\nLogin efetuado com sucesso.\nUtilizador/a registrado/a:",gerente,"\nPerfil do/a utilizador/a: Gerente de Contas\nSistema Central de Gerenciamento de Operações\n©SCGO 2019 | Versão 1.0 | vBank®\n==================================================\n")
         opcao="1"
         while opcao != "0":
-            print("\n\n------------\nSCGO vBank Gerente de Contas\n1 = Gerenciar clientes\n2 = Gerenciar conta corrente\n0 = Sair do SCGO vBank")
+            print("\n\n--------------------------------------------------\nSCGO vBank Gerente de Contas\n1 = Gerenciar clientes\n2 = Gerenciar conta corrente\n0 = Sair do SCGO vBank")
             opcao=input("\nInforme a operação desejada: ")
             if opcao == "1":
                 retorno=menu_secundario_clientes()
@@ -505,17 +506,17 @@ def menu_principal():
             if opcao == "0":
                 desiste=valida_saida_principal()
                 if desiste == "s":
-                    print("\n\n---------------------------------------------\nLogout efetuado com sucesso.\nUtilizador/a registrado/a:",gerente,"\nPerfil do/a utilizador/a: Gerente de Contas\nSistema Central de Gerenciamento de Operações\n©SCGO 2019 | vBank®\n---------------------------------------------\n")
+                    print("\n\n==================================================\nLogout efetuado com sucesso.\nUtilizador/a registrado/a:",gerente,"\nPerfil do/a utilizador/a: Gerente de Contas\nSistema Central de Gerenciamento de Operações\n©SCGO 2019 | vBank®\n==================================================\n")
                 if desiste == "1":
                     opcao="1"
             if opcao != "1" and opcao != "2" and opcao != "0":
                 print("Esta não é uma opção válida.")
 
 
-#
-# ------------------------------------------------------------------------------------------------------------------------------------
+#########################################################
+#########################################################
 # PROGRAMA PRINCIAL
-# ------------------------------------------------------------------------------------------------------------------------------------
-#
+#########################################################
+#########################################################
 
 menu_principal()
