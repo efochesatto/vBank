@@ -1,8 +1,12 @@
-#########################################################
-#########################################################
+##################################################################################################################
+# MÓDULOS
+##################################################################################################################
+
+import random
+
+##################################################################################################################
 # PERSONALIZAÇÃO
-#########################################################
-#########################################################
+##################################################################################################################
 
 normal = "\033[0;0m"
 vermelho = "\033[31m"
@@ -24,15 +28,15 @@ fundo_magenta = "\033[45m"
 fundo_ciano = "\033[46m"
 fundo_branco = "\033[47m"
 
-
-#########################################################
-#########################################################
-# LISTAS E CLASSES
-#########################################################
-#########################################################
-
+##################################################################################################################
+# LISTAS
+##################################################################################################################
 
 lista_principal_clientes=[]
+
+##################################################################################################################
+# CLASSES
+##################################################################################################################
 
 class tipo_cadastro:
     nome=""
@@ -45,16 +49,11 @@ class tipo_cadastro:
     limite=0.0
     saldo=0.0
 
+##################################################################################################################
+# FUNÇÕES MÓDULO CLIENTE
+##################################################################################################################
 
-#########################################################
-#########################################################
-# FUNÇÕES DE CLIENTE
-#########################################################
-#########################################################
-
-import random
-
-
+# Consultando existência de conta com mesmo número.
 def gera_vconta_repete(vconta):
         cadastro_encontrado=0
         for i in range(len(lista_principal_clientes)):
@@ -67,6 +66,7 @@ def gera_vconta_repete(vconta):
         if cadastro_encontrado == 0:
             return "1"
 
+# Gerador de números para a nova conta.
 def gera_vconta_numeros():
     vconta=0
     opera=1
@@ -77,6 +77,7 @@ def gera_vconta_numeros():
         opera*=10
     return (vconta)
 
+# Ao cadastrar uma nova conta, o programa gera o número da nova conta.
 def gera_vconta():
     gerador="1"
     while gerador == "1":
@@ -87,11 +88,13 @@ def gera_vconta():
         else:
             return vconta
 
+# Finalizado o cadastro, exibir o cadastro completo.
 def cadastrar_cliente_ver_cadastro():
     i=(len(lista_principal_clientes))-1
     print("\nNome:",lista_principal_clientes[i].nome,"\nSobrenome:",lista_principal_clientes[i].sobrenome,"\nCPF:",lista_principal_clientes[i].cpf,"\nE-mail:",lista_principal_clientes[i].email,"\nEndereço:",lista_principal_clientes[i].endereco,"\nTelefone:",lista_principal_clientes[i].telefone,"\nvConta:",lista_principal_clientes[i].vconta,"\nLimite autorizado: R$ {0:.2f}".format(lista_principal_clientes[i].limite),"\nSaldo: R$ {0:.2f}".format(lista_principal_clientes[i].saldo,"\n"))
     return "1"
 
+# Tendo finalizado o procedimento de cadastro de novo cliente, o programa solicita exibição do cadastro completo ou retorno ao menu anterior.
 def cadastrar_cliente_finalizar():
     opcao="1"
     while opcao != "0":
@@ -105,6 +108,7 @@ def cadastrar_cliente_finalizar():
             print("Esta não é uma opção válida.")
             opcao="1"
 
+# Após confirmar que o CPF informado para novo cadastro não consta em nenhum cadastro já existente, o programa verifica a validade do CPF informado.
 def valida_cpf(eh_novo):
     cpf=eh_novo
     d2=cpf%10
@@ -143,6 +147,7 @@ def valida_cpf(eh_novo):
         print("O CPF informado não é válido.")
         return "0"
 
+# Para novo cadastro, após informar CPF, programa verifica se o CPF já consta em algum cadastro existente
 def cadastrar_cliente_busca_existente(novo_cpf):
     cadastro_encontrado=0
     for i in range(len(lista_principal_clientes)):
@@ -152,6 +157,7 @@ def cadastrar_cliente_busca_existente(novo_cpf):
             cadastro_encontrado=1
     return cadastro_encontrado
 
+# Cadastrar um novo cliente, no módulo de gerenciamento de clientes
 def cadastrar_cliente():
     print(reverso + "\n--------------------------------------------------\nSCGO vBank Gerente de Contas - Gerenciar Clientes - Cadastrar Cliente\n--------------------------------------------------\n" + normal + "\nCadastro vBank")
     novo_cpf=int(input("Informe o CPF (apenas números) do/a novo/a cliente: "))
@@ -182,6 +188,7 @@ def cadastrar_cliente():
         print("Já existe um cadastrao com o CPF informado.")
         return "1"
 
+# Em encontrando o campo buscado, o programa possibilita exibição do cadastro completo
 def consultar_cadastro_ver_completo(i):
     opcao="1"
     while opcao != "0":
@@ -195,6 +202,7 @@ def consultar_cadastro_ver_completo(i):
             print("Esta não é uma opção válida.")
             opcao="1"
 
+# Operação de consulta de cadastro, através do CPF
 def consultar_cadastro_cpf():
         busca=int(input("Consultar CPF: "))
         cadastro_encontrado=0
@@ -210,6 +218,7 @@ def consultar_cadastro_cpf():
             print("Não foi encontrado nenhum cadastro com o CPF informado.")
             return "1"
 
+# Operação de consulta de cadastro, através do nome
 def consultar_cadastro_nome():
         busca=input("Consultar Nome: ")
         cadastro_encontrado=0
@@ -225,6 +234,7 @@ def consultar_cadastro_nome():
             print("Não foi encontrado nenhum cadastro com o nome informado.")
             return "1"
 
+# Operação de consulta de cadastro, através do sobrenome
 def consultar_cadastro_sobrenome():
         busca=input("Consultar Sobrenome: ")
         cadastro_encontrado=0
@@ -240,6 +250,7 @@ def consultar_cadastro_sobrenome():
             print("Não foi encontrado nenhum cadastro com o sobrenome informado.")
             return "1"
 
+# Operação de consulta de cadastro, através do número da conta
 def consultar_cadastro_vconta():
         busca=int(input("Consultar vConta: "))
         cadastro_encontrado=0
@@ -255,6 +266,7 @@ def consultar_cadastro_vconta():
             print("Não foi encontrado nenhum cadastro com a vConta informada.")
             return "1"
 
+# Operação de consulta de cadastro, no módulo de gerenciamento de clientes
 def consultar_cadastro ():
     opcao="1"
     while opcao != "0":
@@ -273,6 +285,8 @@ def consultar_cadastro ():
         if opcao != "1" and opcao != "2" and opcao != "3" and opcao != "4" and opcao != "0":
             print("Esta não é uma opção válida.")
 
+
+# Confirmação de alteração de cadastro
 def alterar_cadastro_confirmar_conta_buscada ():
     opcao=input("Deseja alterar esta conta (s/n)? ")
     if opcao == "s":
@@ -283,7 +297,7 @@ def alterar_cadastro_confirmar_conta_buscada ():
         print("Esta não é uma opção válida.")
         alterar_cadastro_confirmar_conta_buscada()
 
-
+# Tendo informado o CPF, informa a titularidade, solicita confirmação de alteração da conta e solicita o campo a ser alterado
 def alterar_cadastro_encontrado (cadastro):
     print("Titularidade da conta a ser alterada:",lista_principal_clientes[cadastro].nome,lista_principal_clientes[cadastro].sobrenome)
     confirma=alterar_cadastro_confirmar_conta_buscada()
@@ -312,6 +326,7 @@ def alterar_cadastro_encontrado (cadastro):
         if altera == "0":
             return -1
 
+# Realizar alteração em cadastro existente, no módulo de gerenciamento de clientes
 def alterar_cadastro ():
     print(reverso + "\n--------------------------------------------------\nSCGO vBank Gerente de Contas- Gerenciar Clientes - Alterar Cadastro\n--------------------------------------------------\n" + normal + "\nEsta opção permite realizar atualização cadastral. \nPara alterar um cadastro, é necessário o informar o CPF registrado.")
     busca=int(input("Informe o CPF do cadastro que deseja alterar: "))
@@ -336,6 +351,7 @@ def alterar_cadastro ():
                 print("Esta não é uma opção válida.")
                 opcao="1"
 
+# Ao solicitar uma exclusão de conta, tendo confirmado a titularidade, o programa solicita confirmação da operação
 def excluir_cadastro_confirmar_conta_buscada ():
     opcao=input("Deseja realmente excluir esta conta (s/n)? ")
     if opcao == "s":
@@ -346,6 +362,7 @@ def excluir_cadastro_confirmar_conta_buscada ():
         print("Esta não é uma opção válida.")
         excluir_cadastro_confirmar_conta_buscada()
 
+# Ao solicitar uma exclusão de conta, apresenta os dados da conta a ser excluída
 def excluir_cadastro_encontrado(cadastro):
     print("Titularidade da conta a ser alterada:",lista_principal_clientes[cadastro].nome,lista_principal_clientes[cadastro].sobrenome)
     confirma=excluir_cadastro_confirmar_conta_buscada()
@@ -354,6 +371,7 @@ def excluir_cadastro_encontrado(cadastro):
         print("Cadastro excluído com sucesso.")
         return "1"
 
+# Realizar exclusão de um cadastro, no módulo de gerenciamento de clientes
 def excluir_cadastro ():
     print(reverso + "\n--------------------------------------------------\nSCGO vBank Gerente de Contas- Gerenciar Clientes - Excluir Cadastro\n--------------------------------------------------\n" + normal +"\nEsta opção remove permanentemente um cadastro de cliente. \nPara excluir um cadastro, é necessário o informar o CPF registrado.")
     busca=int(input("Informe o CPF do cadastro que deseja excluir: "))
@@ -379,14 +397,11 @@ def excluir_cadastro ():
                 print("Esta não é uma opção válida.")
                 opcao="1"
 
+##################################################################################################################
+# OPERAÇÕES MÓDULO CONTA
+##################################################################################################################
 
-#########################################################
-#########################################################
-# OPERAÇÕES DE CONTA
-#########################################################
-#########################################################
-
-
+# Busca a conta através do cpf
 def operar_conta_busca_conta_cpf():
     busca=int(input("Informe o CPF da conta:"))
     for i in range(len(lista_principal_clientes)):
@@ -395,6 +410,7 @@ def operar_conta_busca_conta_cpf():
             return i
     return "1"
 
+# Busca a conta através do número de conta
 def operar_conta_busca_conta_vConta():
     busca=int(input("Informe o número da vConta:"))
     for i in range(len(lista_principal_clientes)):
@@ -403,6 +419,7 @@ def operar_conta_busca_conta_vConta():
             return i
     return "1"
 
+# Buscar conta para realizar operação de crédito ou de débito em conta corrente
 def operar_conta_busca_conta():
     opcao="1"
     while opcao != "0":
@@ -428,6 +445,7 @@ def operar_conta_busca_conta():
             opcao="1"
     return "1"
 
+# Realizar um débito em conta, no módulo de gerenciamento de conta correte
 def debitar():
     conta_debitar=operar_conta_busca_conta()
     if conta_debitar == "1":
@@ -443,6 +461,7 @@ def debitar():
             print("Esta conta não possui disponibilidade para esta operação.")
             debitar()
 
+# Realizar um crédito em conta, no módulo de gerenciamento de conta correte
 def creditar():
     conta_creditar=operar_conta_busca_conta()
     if conta_creditar == "1":
@@ -455,13 +474,9 @@ def creditar():
         print("\nOperação realizada com sucesso.\n\nCliente vBank: ",lista_principal_clientes[conta_creditar].nome, lista_principal_clientes[conta_creditar].sobrenome, "\nSaldo da vConta: R$ {0:.2f}".format(lista_principal_clientes[conta_creditar].saldo), "\nLimite autorizado: R$",lista_principal_clientes[conta_creditar].limite, "\nSaldo disponível: R$ {0:.2f}".format((lista_principal_clientes[conta_creditar].saldo)+(lista_principal_clientes[conta_creditar].limite)))
         return "1"
 
-
-#########################################################
-#########################################################
+##################################################################################################################
 # FUNÇÕES DE NAVEGAÇÃO
-########################################################
-########################################################
-
+#################################################################################################################
 
 # Validar a saída do menu secundario Clientes e retorno ao menu principal do programa
 def valida_saida_clientes():
@@ -583,11 +598,8 @@ def menu_principal():
             if opcao != "1" and opcao != "2" and opcao != "0":
                 print("Esta não é uma opção válida.")
 
-
-#########################################################
-#########################################################
+##################################################################################################################
 # PROGRAMA PRINCIAL
-#########################################################
-#########################################################
+##################################################################################################################
 
 menu_principal()
