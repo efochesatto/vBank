@@ -71,7 +71,7 @@ def gera_vconta_numeros():
     vconta=0
     opera=1
     for i in range (6):
-        novo=random.randint(0,9)
+        novo=random.randint(1,9)
         add=opera*novo
         vconta+=add
         opera*=10
