@@ -452,7 +452,7 @@ def creditar():
         valor_disponível=((lista_principal_clientes[conta_creditar].saldo)+(lista_principal_clientes[conta_creditar].limite))
         valor=float(input("\nInforme o valor a ser creditado: R$"))
         lista_principal_clientes[conta_creditar].saldo=((lista_principal_clientes[conta_creditar].saldo)+valor)
-        print("\nOperação realizada com sucesso.\n\nCliente vBank: ",lista_principal_clientes[conta_creditar].nome, lista_principal_clientes[conta_creditar].sobrenome, "\nSaldo da vConta: R$ {0:.2f}".format(lista_principal_clientes[conta_creditar].saldo), "\nLimite autorizado: R$",lista_principal_clientes[conta_creditar].limite, "\nSaldo disponível: R$ {0:.2f}".format((lista_principal_clientes[conta_debitar].saldo)+(lista_principal_clientes[conta_debitar].limite)))
+        print("\nOperação realizada com sucesso.\n\nCliente vBank: ",lista_principal_clientes[conta_creditar].nome, lista_principal_clientes[conta_creditar].sobrenome, "\nSaldo da vConta: R$ {0:.2f}".format(lista_principal_clientes[conta_creditar].saldo), "\nLimite autorizado: R$",lista_principal_clientes[conta_creditar].limite, "\nSaldo disponível: R$ {0:.2f}".format((lista_principal_clientes[conta_creditar].saldo)+(lista_principal_clientes[conta_creditar].limite)))
         return "1"
 
 
@@ -560,7 +560,7 @@ def valida_saida_principal():
 def menu_principal():
     logado=1
     while logado == 1:
-        gerente=input("\n\n\n\n" + fundo_branco + preto + "============================   vBank   ============================\n"+ fundo_preto + normal + "Bem-vindo/a ao Sistema Central de Gerenciamento de Operações vBank.\nPara iniciar o SCGO vBabk, informe seu IDvBank: ")
+        gerente=input("\n\n\n\n" + fundo_branco + preto + "============================   vBank   ============================"+ fundo_preto + normal + "\nBem-vindo/a ao Sistema Central de Gerenciamento de Operações vBank.\nPara iniciar o SCGO vBank, informe seu IDvBank: ")
         print ("\n\n==================================================\nLogin efetuado com sucesso.\nUtilizador/a registrado/a:",gerente,"\nPerfil do/a utilizador/a: Gerente de Contas\nSistema Central de Gerenciamento de Operações\n©SCGO 2019 | Versão 1.0 | vBank®\n==================================================\n")
         opcao="1"
         while opcao != "0":
