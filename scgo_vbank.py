@@ -451,12 +451,12 @@ def debitar():
     if conta_debitar == "1":
         return "1"
     if conta_debitar != "1":
-        print("\nCliente vBank: ",lista_principal_clientes[conta_debitar].nome, lista_principal_clientes[conta_debitar].sobrenome, "\nSaldo da vConta: R$",lista_principal_clientes[conta_debitar].saldo, "\nLimite autorizado: R$",lista_principal_clientes[conta_debitar].limite, "\nSaldo disponível: R$ {0:.2f}".format((lista_principal_clientes[conta_debitar].saldo)+(lista_principal_clientes[conta_debitar].limite)))
+        print("\nCliente vBank: ",lista_principal_clientes[conta_debitar].nome, lista_principal_clientes[conta_debitar].sobrenome, "\nSaldo da vConta: R$ {:.2f}".format(lista_principal_clientes[conta_debitar].saldo), "\nLimite autorizado: R$ ",lista_principal_clientes[conta_debitar].limite, "\nSaldo disponível: R$ {0:.2f}".format((lista_principal_clientes[conta_debitar].saldo)+(lista_principal_clientes[conta_debitar].limite)))
         valor_disponível=((lista_principal_clientes[conta_debitar].saldo)+(lista_principal_clientes[conta_debitar].limite))
-        valor=float(input("\nInforme o valor a ser debitado: R$"))
+        valor=float(input("\nInforme o valor a ser debitado: R$ "))
         if valor_disponível-valor >= 0:
             lista_principal_clientes[conta_debitar].saldo=((lista_principal_clientes[conta_debitar].saldo)-valor)
-            print("\nOperação realizada com sucesso.\n\nCliente vBank: ",lista_principal_clientes[conta_debitar].nome, lista_principal_clientes[conta_debitar].sobrenome, "\nSaldo da vConta: ",lista_principal_clientes[conta_debitar].saldo, "\nLimite autorizado: ",lista_principal_clientes[conta_debitar].limite, "\nSaldo disponível: ",((lista_principal_clientes[conta_debitar].saldo)+(lista_principal_clientes[conta_debitar].limite)))
+            print("\nOperação realizada com sucesso.\n\nCliente vBank: ",lista_principal_clientes[conta_debitar].nome, lista_principal_clientes[conta_debitar].sobrenome, "\nSaldo da vConta: R$ {:.2f}".format(lista_principal_clientes[conta_debitar].saldo), "\nLimite autorizado: R$ ",lista_principal_clientes[conta_debitar].limite, "\nSaldo disponível: R$ {0:.2f}".format((lista_principal_clientes[conta_debitar].saldo)+(lista_principal_clientes[conta_debitar].limite)))
         if valor_disponível-valor < 0:
             print("Esta conta não possui disponibilidade para esta operação.")
             debitar()
@@ -467,11 +467,11 @@ def creditar():
     if conta_creditar == "1":
         return "1"
     if conta_creditar != "1":
-        print("\nCliente vBank: ",lista_principal_clientes[conta_creditar].nome, lista_principal_clientes[conta_creditar].sobrenome, "\nSaldo da vConta: ",lista_principal_clientes[conta_creditar].saldo, "\nLimite autorizado: R$",lista_principal_clientes[conta_creditar].limite, "\nSaldo disponível: R$",((lista_principal_clientes[conta_creditar].saldo)+(lista_principal_clientes[conta_creditar].limite)))
+        print("\nCliente vBank: ",lista_principal_clientes[conta_creditar].nome, lista_principal_clientes[conta_creditar].sobrenome, "\nSaldo da vConta: R$ {:.2f}".format(lista_principal_clientes[conta_creditar].saldo), "\nLimite autorizado: R$ ",lista_principal_clientes[conta_creditar].limite, "\nSaldo disponível: R$ {:.2f}".format(((lista_principal_clientes[conta_creditar].saldo)+(lista_principal_clientes[conta_creditar].limite))))
         valor_disponível=((lista_principal_clientes[conta_creditar].saldo)+(lista_principal_clientes[conta_creditar].limite))
-        valor=float(input("\nInforme o valor a ser creditado: R$"))
+        valor=float(input("\nInforme o valor a ser creditado: R$ "))
         lista_principal_clientes[conta_creditar].saldo=((lista_principal_clientes[conta_creditar].saldo)+valor)
-        print("\nOperação realizada com sucesso.\n\nCliente vBank: ",lista_principal_clientes[conta_creditar].nome, lista_principal_clientes[conta_creditar].sobrenome, "\nSaldo da vConta: R$ {0:.2f}".format(lista_principal_clientes[conta_creditar].saldo), "\nLimite autorizado: R$",lista_principal_clientes[conta_creditar].limite, "\nSaldo disponível: R$ {0:.2f}".format((lista_principal_clientes[conta_creditar].saldo)+(lista_principal_clientes[conta_creditar].limite)))
+        print("\nOperação realizada com sucesso.\n\nCliente vBank: ",lista_principal_clientes[conta_creditar].nome, lista_principal_clientes[conta_creditar].sobrenome, "\nSaldo da vConta: R$ {0:.2f}".format(lista_principal_clientes[conta_creditar].saldo), "\nLimite autorizado: R$ ",lista_principal_clientes[conta_creditar].limite, "\nSaldo disponível: R$ {0:.2f}".format((lista_principal_clientes[conta_creditar].saldo)+(lista_principal_clientes[conta_creditar].limite)))
         return "1"
 
 ##################################################################################################################
